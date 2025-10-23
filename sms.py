@@ -3,15 +3,11 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import time
-
-# ---------------- SMTP Configuration ----------------
 SMTP_SERVER = ""
 SMTP_PORT = 587
-EMAIL_ADDRESS = ""          # Sender email
-EMAIL_PASSWORD = ""               # Gmail App password
-TO_EMAIL_ADDRESS = ""  # Recipient email
-
-# ---------------- Email Alert Function ----------------
+EMAIL_ADDRESS = ""         
+EMAIL_PASSWORD = ""              
+TO_EMAIL_ADDRESS = ""
 def send_email_alert(subject: str, message: str):
     """
     Send an email alert via SMTP whenever an obstacle is detected.
@@ -35,7 +31,6 @@ def send_email_alert(subject: str, message: str):
     except Exception as e:
         print(f"[{time.strftime('%H:%M:%S')}] Failed to send email: {e}")
 
-# ---------------- Example Usage ----------------
 if __name__ == "__main__":
     send_email_alert(
         "Object Detection Test Alert",
