@@ -47,18 +47,22 @@
 ```bash
 git clone https://github.com/Shunmugapriya-S/SmartRailShield-AI-Powered-Safety-and-Violation-for-Railways.git
 cd SmartRailShield
+
 2. Install dependencies
 pip install -r requirements.txt
+
 
 3. Add Firebase credentials
 
 Place your firebase-key.json or configuration file in the project root.
 
+
 4. Run individual modules
 python anpr.py
 python drowsiness.py
 python faultdetection.py
-python object_detection.py
+python detection.py
+
 
 5. Run the Flask app
 python app.py
@@ -75,6 +79,8 @@ Map-based visualization of tracks and detected obstacles
 Control room dashboard for monitoring multiple trains simultaneously
 
 Mobile app integration for alerts and reports
+
+
 
 License
 
