@@ -1,7 +1,7 @@
 # SmartRailShield: AI-Powered Safety and Violation Detection for Railways
 # TEAM WORK
-1.NITHYASRI R
-2.SHUNMUGAPRIYA S(MYSELF)
+ -1.NITHYASRI R
+ -2.SHUNMUGAPRIYA S(MYSELF)
 
 ## Overview
 SmartRailShield is an **AI-powered railway safety system** designed to enhance railway operations by monitoring track safety, driver alertness, and train health in real-time. The system integrates four key modules:
@@ -32,21 +32,22 @@ SmartRailShield is an **AI-powered railway safety system** designed to enhance r
 
 ## SETUP INSTRUCTION
 ## 1. Clone the repository
-git clone https://github.com/Shunmugapriya-S/SmartRailShield-AI-Powered-Safety-and-Violation-for-Railways.git
-cd SmartRailShield
+-- git clone https://github.com/Shunmugapriya-S/SmartRailShield-AI-Powered-Safety-and-Violation-for-Railways.git
+-- cd SmartRailShield
 ## 2. Install Dependencies
-pip install -r requirements.txt
+-- pip install -r requirements.txt
 ## 3.Add firebase Credentials
 ## 4.Execution
-    python anpr.py
-    python drowsiness.py
-    python faultdetection.py
+    -python anpr.py
+    -python drowsiness.py
+    -python faultdetection.py
 ## 5.Run the Flask app
     python app.py
-## 6.Open in browser: http://127.0.0.1:5000/
+## 6.Open in browser
+http://127.0.0.1:5000/
 ## Future Enhancements
-IoT sensor integration for real-time train data
-Map-based visualization of tracks and detected obstacles
-Control room dashboard for monitoring multiple trains simultaneously
-Mobile app integration for alerts and reports
+--IoT sensor integration for real-time train data
+--Map-based visualization of tracks and detected obstacles
+--Control room dashboard for monitoring multiple trains simultaneously
+--Mobile app integration for alerts and reports
  
