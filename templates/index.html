@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Live Loco Location</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+
+<body>
+    <h3>Live Loco Location & Obstacle Alert</h3>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+
+    <script>
+        // ---------------- Firebase Config ----------------
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJbvVOr9RoksgZYOMVjiYMbga_ZORc-uo",
+            authDomain: "railshield-3cd66.firebaseapp.com",
+            databaseURL: "https://railshield-3cd66-default-rtdb.firebaseio.com",
+            projectId: "railshield-3cd66",
+            storageBucket: "railshield-3cd66.appspot.com",
+            messagingSenderId: "1905500083",
+            appId: "1:1905500083:web:5f0f56fad1ea30b736f5c6",
+            measurementId: "G-VTMFNYF9WQ"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // ---------------- Leaflet Map ----------------
+        const map = L.map('map').setView([13.0827, 80.2707], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        let locoMarker = L.marker([13.0827, 80.2707]).addTo(map).bindPopup("🚂 Loco Position");
+        let obstacleMarkers = {};
+
+        // ---------------- Update Map from Firebase ----------------
+        function updateMap() {
+            // Loco location
+            db.ref("loco").on("value", snapshot => {
+                const loc = snapshot.val();
+                if (loc) {
+                    locoMarker.setLatLng([loc.lat, loc.lon]);
+                    locoMarker.bindPopup(`🚂 Loco Position<br>Lat: ${loc.lat.toFixed(5)}, Lon: ${loc.lon.toFixed(5)}`);
+                    map.panTo([loc.lat, loc.lon]);
+                }
+            });
+
+            // Obstacles
+            db.ref("obstacles").on("value", snapshot => {
+                const obsList = snapshot.val();
+                if (!obsList) return;
+
+                // Clear old markers
+                Object.values(obstacleMarkers).forEach(marker => map.removeLayer(marker));
+                obstacleMarkers = {};
+
+                obsList.forEach((obs, index) => {
+                    const marker = L.marker([obs.lat, obs.lon], {
+                        icon: L.icon({
+                            iconUrl: 'https://cdn-icons-png.flaticon.com/512/565/565547.png',
+                            iconSize: [30, 30]
+                        })
+                    }).addTo(map).bindPopup(`🚨 ${obs.class}`);
+                    obstacleMarkers[index] = marker;
+                });
+            });
+        }
+
+        updateMap();
+    </script>
+</body>
+
+</html>

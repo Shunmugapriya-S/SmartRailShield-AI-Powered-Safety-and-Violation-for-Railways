@@ -1,0 +1,43 @@
+# email_alert.py for Object Detection
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import time
+
+# ---------------- SMTP Configuration ----------------
+SMTP_SERVER = ""
+SMTP_PORT = 587
+EMAIL_ADDRESS = ""          # Sender email
+EMAIL_PASSWORD = ""               # Gmail App password
+TO_EMAIL_ADDRESS = ""  # Recipient email
+
+# ---------------- Email Alert Function ----------------
+def send_email_alert(subject: str, message: str):
+    """
+    Send an email alert via SMTP whenever an obstacle is detected.
+    """
+    try:
+        # Create the email
+        msg = MIMEMultipart()
+        msg['From'] = EMAIL_ADDRESS
+        msg['To'] = TO_EMAIL_ADDRESS
+        msg['Subject'] = subject
+        msg.attach(MIMEText(message, 'plain'))
+
+        # Connect and send
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        server.starttls()
+        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        server.send_message(msg)
+        server.quit()
+
+        print(f"[{time.strftime('%H:%M:%S')}] Email sent: {subject}")
+    except Exception as e:
+        print(f"[{time.strftime('%H:%M:%S')}] Failed to send email: {e}")
+
+# ---------------- Example Usage ----------------
+if __name__ == "__main__":
+    send_email_alert(
+        "Object Detection Test Alert",
+        "This is a test alert from the object detection module."
+    )
