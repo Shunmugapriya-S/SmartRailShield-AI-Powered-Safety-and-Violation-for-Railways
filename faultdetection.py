@@ -26,7 +26,7 @@ def send_alert(prediction, input_data):
         "timestamp": firestore.SERVER_TIMESTAMP
     }
     db.collection("engine_alerts").add(alert)
-GEMINI_API_KEY = "AIzaSyD7el6hY16qEPOV4g_KPIHatGDfkJz5gI8"  # move to env variable later
+GEMINI_API_KEY = ""
 client = genai.Client(api_key=GEMINI_API_KEY)
 def get_gemini_explanation(input_data, prediction):
     prompt = f"""
@@ -127,3 +127,4 @@ def evaluate_model(model, name):
 if st.checkbox("📈 Show Model Evaluation"):
     evaluate_model(rf_model, "Random Forest")
     evaluate_model(xgb_model, "XGBoost")
+
