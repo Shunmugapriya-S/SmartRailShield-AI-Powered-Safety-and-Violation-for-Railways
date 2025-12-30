@@ -2,7 +2,8 @@
 
 ## Team Members
 1. Nithyasri R  
-2. Shunmugapriya S (Myself)
+2. Samyuktha P
+3. Shunmuga Priya S
 
 ---
 
@@ -38,7 +39,9 @@
 - **Backend:** Flask (Python)  
 - **Database:** Firebase  
 - **AI Models:** YOLOv8, EasyOCR, MediaPipe Face Detection  
-- **Alerts:** pyttsx3 (voice) / SMTP  
+- **Alerts:** pyttsx3 (voice) / SMTP
+- **Library:** Mediapipe,opencv,ultralytics,gtts
+  
 
 ---
 
@@ -87,8 +90,10 @@ Author
 
 Shunmugapriya S
 Nithyasri R
+Samyuktha P
 
 If any queries contact gmail:
                       sshunmugapriya49@gmail.com
                       nithyasri482006sri@gmail.com
+                      samyukthapanneer2005@gmail.com
                               
